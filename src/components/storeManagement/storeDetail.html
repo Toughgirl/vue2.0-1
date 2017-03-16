@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/plugins/dataTables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<div id="wrapper">
+  <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+      <ul class="nav" id="side-menu">
+        <li class="nav-header ">
+          <div class="dropdown profile-element">
+            <h2 class="font-bold">运营商系统</h2>
+          </div>
+          <div class="logo-element">
+            运营商
+          </div>
+        </li>
+        <li>
+          <a href="#/index"><i class="fa fa-home"></i> <span class="nav-label">首页</span></a>
+        </li>
+        <li>
+          <a href="#/storeList"><i class="fa fa-bus"></i> <span class="nav-label">门店管理</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/storeList">门店管理</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/purchaseList"><i class="fa fa-sitemap"></i> <span class="nav-label">业务管理</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/purchaseList">采购业务</a></li>
+            <li><a href="#/returnList">退货业务</a></li>
+            <li><a href="#/carParts">全车件</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/SettledList"><i class="fa fa-calculator"></i> <span class="nav-label">财务管理</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/SettledList">已结算</a></li>
+            <li><a href="#/TransactionList">交易明细</a></li>
+          </ul>
+        </li>
+        <li class="active">
+          <a href="#/account"><i class="fa fa-user"></i> <span class="nav-label">账户中心</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li class="active"><a href="#/account">公司信息</a></li>
+            <li><a href="#/personal">个人中心</a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </li>
+        <li>
+          <a href="#/messageList"><i class="fa fa-envelope-o"></i> <span class="nav-label">消息</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/messageList">消息中心</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+    </div>
+  </nav>
+
+  <div id="page-wrapper" class="gray-bg dashbard-1">
+    <!-- 顶部栏-->
+    <div class="row border-bottom">
+      <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+          <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+          <li>{{user.username}}</li>
+          <li>
+            <a href="#" v-on:click="submit">
+              <i class="fa fa-sign-out"></i>退出
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wrapper wrapper-content">
+          <div class="ibox">
+            <div class="ibox-title">
+              <h5>注册信息</h5>
+            </div>
+            <div class="ibox-content">
+              <table class="table table-bordered ">
+                <tbody>
+                <tr>
+                  <td class="gray-bg">营业执照注册号：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入营业执照注册号"></td>
+                  <td class="gray-bg">公司名称：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入公司名称"></td>
+                </tr>
+                <tr>
+                  <td class="gray-bg">法人代表姓名：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入法人代表姓名"></td>
+                  <td class="gray-bg">法人身份证号码：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入法人代表身份证号码"></td>
+                </tr>
+                <tr>
+                  <td class="gray-bg">注册资本：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入注册资本"></td>
+                  <td class="gray-bg">成立日期：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入成立日期"></td>
+                </tr>
+                <tr>
+                  <td class="gray-bg">营业期限：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入成立日期">至<input type="text" class="form-control" placeholder="请输入成立日期"></td>
+                  <td class="gray-bg">注册地址：</td>
+                  <td><input type="text" class="form-control" placeholder="请输入注册地址"></td>
+                </tr>
+                <tr>
+                  <td class="gray-bg">税务登记证：</td>
+                  <td><img src="../../assets/img/mvc_logo.png"></td>
+                  <td class="gray-bg">法人身份证照片：</td>
+                  <td><img src="../../assets/img/mvc_logo.png"><img src="../../assets/img/mvc_logo.png"></td>
+                </tr>
+                </tbody>
+
+              </table>
+            </div>
+            <div class="ibox-title" style="border-top: none;">
+              <h5>合作信息</h5>
+            </div>
+            <div class="ibox-content form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">所属运营商：</label>
+                <div class="col-sm-10"><p style="line-height: 32px;">四川兴达咨询管理有限公司</p></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">公司编号：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入合同编号"></div>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">结算方式：</label>
+                <div class="col-sm-10">
+                  <div class="col-sm-1"><input type="checkbox">月结</div>
+                  <div class="col-sm-1"><input type="checkbox">钱包</div>
+                  <div class="col-sm-1"><input type="checkbox">微信</div>
+                  <div class="col-sm-1"><input type="checkbox">支付宝</div>
+                  </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">滞纳金比例：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输滞纳金比例"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">全车件返利比例：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入全车件返利比例"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">负责人姓名：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入负责人姓名"></div><div class="col-sm-3" style="line-height: 32px;">（即顶级账户管理员）</div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">负责人手机：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入负责人手机"></div>
+                <div class="clearfix"></div>
+              </div>
+
+            </div>
+            <div class="ibox-title" style="border-top: none;">
+              <h5>服务信息</h5>
+            </div>
+            <div class="ibox-content form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">门店类型：</label>
+                <div class="col-sm-3"><select class="form-control">
+                  <option>请选择门店类型</option>
+                  <option>一类</option>
+                  <option>二类</option>
+                </select></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">主修车系：</label>
+                <div class="col-sm-10">
+                  <div class="col-sm-1"><input type="checkbox">德系</div>
+                  <div class="col-sm-1"><input type="checkbox">美系</div>
+                  <div class="col-sm-1"><input type="checkbox">法系</div>
+                  <div class="col-sm-1"><input type="checkbox">日系</div>
+                  <div class="col-sm-1"><input type="checkbox">韩系</div>
+                  <div class="col-sm-1"><input type="checkbox">豪华品牌</div>
+                  <div class="col-sm-1"><input type="checkbox">其他</div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">门店地址：</label>
+                <div class="col-sm-3">
+                  <region-picker :province="region.province" :city="region.city" :district="region.district"  :placeholder="{province: '选择省份', city: '选择市', district: '选择地区'}" @onchange="change" ></region-picker>
+                  <input type="text" class="form-control"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">邮政编码：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入邮政编码"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">传真号码：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入传真号码"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">电子邮箱：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入电子邮箱"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">客服QQ：</label>
+                <div class="col-sm-3"><input type="text" class="form-control" placeholder="请输入客服QQ"></div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">联系电话：</label>
+                <div class="col-sm-6">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <select class="form-control">
+                        <option>请选择电话类型</option>
+                        <option>服务咨询电话</option>
+                        <option>车辆急救电话</option>
+                        <option>投诉电话</option>
+                        <option>保养预约</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-3"><input type="text" class="form-control"></div>
+                    <div class="col-md-3" style="line-height: 32px;"><a href="#">删除此号码</a></div>
+                  </div>
+                  <div class="form-group" style="margin-left: 0;margin-top: 10px;">
+                    <button class="btn btn-primary">+添加号码</button>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">其他信息：</label>
+                <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          服务顾问：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          钣金喷漆工：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          电器维修：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          机修工：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          占地面积：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          接待面积：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          维修区面积：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 form-group">
+                      <div class="row">
+                        <div class="col-md-4 col-sm-12 control-label">
+                          停车区：
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <select class="form-control">
+                            <option value="请选择">请选择</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+
+            </div>
+            <div class="ibox-title" style="border-top: none;">
+              <h5>公司介绍</h5>
+            </div>
+            <div class="ibox-content form-horizontal">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  嘉陵汽车服务中心于2012年成立，其独特的经营理念和管理模式使其快速发展，2013年中期正式发展全国连锁，先后引进国外先进设备以及整车服务运作体系，联合韩国robotis公司、美国IROBOT公司、法国
+                  Aldebaran RoboticsTM 公司等多家世界机器人行业领先公司，研发汽车检修一体系统，首创无人化修车，并通过联盟模式设立行业标准，创建了嘉陵汽车服务“1+N”模式。
+                  2012年嘉陵汽车服务中心正式在成都成立。
+                  2013年嘉陵汽车服务中心成都员工培训基地正式成立。
+                  2014年嘉陵汽车服务中心联合联合韩国robotis公司、美国IROBOT公司、法国Aldebaran RoboticsTM 等多家世界机器人行业领先公司，成立代号为“Jo robot”项目；
+                  2014年嘉陵汽车服务中心直营店扩展到13家，覆盖成都、绵阳、德阳等城市，设立北京、上海、广州、深圳分公司；
+                  2015年嘉陵汽车服务中心全国直营店扩展到175家，四川城市全部覆盖，同事在北京、上海、广州、深圳、西安、云南、杭州、长沙扩展多家门店；
+                  2016年嘉陵汽车服务中心全国直营店扩展到387家；
+                  2016年嘉陵汽车服务中心汽车检修一体系统投入测试，在北京、上海、广州设立体验店；
+                  2016年嘉陵汽车服务中心提出"1+N"模式和国内43家全国连锁服务站联盟；</div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="form-group ">
+                <div class="summernote">
+                  <div class="col-sm-12">
+                      <div class="col-sm-2 text-center"><img src="../../assets/img/mvc_logo.png"><p>图片1</p></div>
+                      <div class="col-sm-2 text-center"><img src="../../assets/img/mvc_logo.png"><p>图片1</p></div>
+                      <div class="col-sm-2 text-center"><img src="../../assets/img/mvc_logo.png"><p>图片1</p></div>
+                      <div class="col-sm-2 text-center"><img src="../../assets/img/mvc_logo.png"><p>图片1</p></div>
+                      <div class="col-sm-2 text-center"><img src="../../assets/img/mvc_logo.png"><p>图片1</p></div>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="pull-right">
+        10GB of <strong>250GB</strong> Free.
+      </div>
+      <div>
+        <strong>底部</strong> Example Company &copy; 2014-2015
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12 animated fadeInRight">
+    <div class="mail-box-header">
+      <div class="btn-group pull-right">
+        <button class="btn btn-primary btn-sm">全部标记为已读</button>
+        <button class="btn btn-white btn-sm">全部删除</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="mail-box">
+
+      <table class="table table-mail ">
+        <tbody>
+        <tr class="unread">
+          <td class="">
+            <div class="icheckbox_square-green checked"><i class="fa fa-envelope-o"></i></div>
+          </td>
+          <td class="mail-ontact"><a href="mail_detail.html">来源： 精优车服</a><span class="label label-info pull-right">采购消息</span></td>
+          <td class="mail-subject"><a href="mail_detail.html">嘉陵汽修服务有限公司于2016-11-15 14：20：36 采购保养件，采购数量：578件，合计金额：25000.00元。</a></td>
+          <td class="mail-date">2016-11-15</td>
+          <td class=""><button class="btn btn-info btn-sm">标记为已读</button>&nbsp;<button class="btn btn-info btn-sm">删除</button></td>
+        </tr>
+        <tr class="read">
+          <td class="">
+            <div class="icheckbox_square-green checked"><i class="fa fa-envelope-o"></i></div>
+          </td>
+          <td class="mail-ontact"><a href="mail_detail.html">来源： 精优车服</a> <span class="label label-danger pull-right">退货消息</span> </td>
+          <td class="mail-subject"><a href="mail_detail.html">嘉陵汽修服务有限公司于2016-11-15 14：20：36 采购保养件，采购数量：578件，合计金额：25000.00元。</a></td>
+          <td class="mail-date">2016-11-15</td>
+          <td class=""><button class="btn btn-info btn-sm">标记为已读</button>&nbsp;<button class="btn btn-info btn-sm">删除</button></td>
+        </tr>
+        <tr class="read">
+          <td class="">
+            <div class="icheckbox_square-green checked"><i class="fa fa-envelope-o"></i></div>
+          </td>
+          <td class="mail-ontact"><a href="mail_detail.html">来源： 精优车服</a><span class="label label-warning pull-right">结算消息</span></td>
+          <td class="mail-subject"><a href="mail_detail.html">嘉陵汽修服务有限公司于2016-11-15 14：20：36 采购保养件，采购数量：578件，合计金额：25000.00元。</a></td>
+          <td class="mail-date">2016-11-15</td>
+          <td class=""><button class="btn btn-info btn-sm">标记为已读</button>&nbsp;<button class="btn btn-info btn-sm">删除</button></td>
+        </tr>
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2></h2>
+    <ol class="breadcrumb">
+      <li>
+        客户管理
+      </li>
+      <li>
+        业务管理
+      </li>
+      <li>
+        <a href="#/carParts">全车件</a>
+      </li>
+      <li>
+        全车件详情
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-2"></div>
+</div>
+
+</body>
+</html>

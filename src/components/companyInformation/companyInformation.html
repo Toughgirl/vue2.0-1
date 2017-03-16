@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/js/bootstrap.min.js">
+  <link rel="stylesheet" href="../../assets/css/plugins/dataTables/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/js/plugins/dataTables/jquery.dataTables.js">
+  <link rel="stylesheet" href="../../assets/js/plugins/dataTables/dataTables.bootstrap.js">
+</head>
+<body>
+<div id="wrapper">
+  <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+      <ul class="nav" id="side-menu">
+        <li class="nav-header">
+          <div class="dropdown profile-element">
+            <h2 class="font-bold">运营商系统</h2>
+          </div>
+          <div class="logo-element">
+            运营商
+          </div>
+        </li>
+        <li>
+          <a href="#/index"><i class="fa fa-home"></i> <span class="nav-label">首页</span></a>
+        </li>
+        <li>
+          <a href="#/storeList"><i class="fa fa-bus"></i> <span class="nav-label">门店管理</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/storeList">门店管理</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/purchaseList"><i class="fa fa-sitemap"></i> <span class="nav-label">业务管理</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/purchaseList">采购业务</a></li>
+            <li><a href="#/returnList">退货业务</a></li>
+            <li><a href="#/carParts">全车件</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/SettledList"><i class="fa fa-calculator"></i> <span class="nav-label">财务管理</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/SettledList">已结算</a></li>
+            <li><a href="#/TransactionList">交易明细</a></li>
+          </ul>
+        </li>
+        <li class="active">
+          <a href="#/account"><i class="fa fa-user"></i> <span class="nav-label">账户中心</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li class="active"><a href="#/account">公司信息</a></li>
+            <li><a href="#/personal">个人中心</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#/messageList"><i class="fa fa-envelope-o"></i> <span class="nav-label">消息</span> <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a href="#/messageList">消息中心</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+    </div>
+  </nav>
+
+  <div id="page-wrapper" class="gray-bg dashbard-1">
+    <!-- 顶部栏-->
+    <!--<div class="row border-bottom">-->
+      <!--<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">-->
+        <!--<div class="navbar-header">-->
+          <!--<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>-->
+        <!--</div>-->
+        <!--<ul class="nav navbar-top-links navbar-right">-->
+          <!--<li>{{user.username}}</li>-->
+          <!--<li>-->
+            <!--<a href="#" v-on:click="submit">-->
+              <!--<i class="fa fa-sign-out"></i>退出-->
+            <!--</a>-->
+          <!--</li>-->
+
+        <!--</ul>-->
+
+      <!--</nav>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+      <!--<div class="col-lg-12">-->
+        <!--<div class="wrapper wrapper-content">-->
+          <!--<div class="ibox">-->
+            <!--<div class="ibox-title">-->
+              <!--<h5>公司信息</h5>-->
+              <!--<div class="ibox-tools">-->
+                <!--<a class="collapse-link">-->
+                  <!--<button class="btn btn-info btn-xs">编辑公司信息</button>-->
+                <!--</a>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ibox-content">-->
+              <!--<table class="table table-bordered ">-->
+                <!--<tbody>-->
+                  <!--<tr>-->
+                    <!--<td class="gray-bg">营业执照注册号：</td>-->
+                    <!--<td>510523535135313133358</td>-->
+                    <!--<td class="gray-bg">公司名称：</td>-->
+                    <!--<td>四川兴达咨询管理有限公司</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td class="gray-bg">法人代表姓名：</td>-->
+                    <!--<td>张无忌</td>-->
+                    <!--<td class="gray-bg">法人身份证号码：</td>-->
+                    <!--<td>511361535134645434</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td class="gray-bg">注册资本：</td>-->
+                    <!--<td>2000万</td>-->
+                    <!--<td class="gray-bg">成立日期：</td>-->
+                    <!--<td>2016年11月4日</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td class="gray-bg">营业期限：</td>-->
+                    <!--<td>2016年11月4日  至     长期</td>-->
+                    <!--<td class="gray-bg">注册地址：</td>-->
+                    <!--<td>四川省成都高新区天府大道1700号3-2-805.</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td class="gray-bg">税务登记证：</td>-->
+                    <!--<td><img src="../../assets/img/mvc_logo.png"></td>-->
+                    <!--<td class="gray-bg">法人身份证照片：</td>-->
+                    <!--<td><img src="../../assets/img/mvc_logo.png"><img src="../../assets/img/mvc_logo.png"></td>-->
+                  <!--</tr>-->
+                <!--</tbody>-->
+
+              <!--</table>-->
+
+
+            <!--</div>-->
+            <!--<div class="ibox-title" style="border-top: none;">-->
+              <!--<h5>合作信息</h5>-->
+            <!--</div>-->
+            <!--<div class="ibox-content">-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">合同编号：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">222222</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">区域范围：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">-->
+                  <!--<table class="table table-bordered">-->
+                    <!--<tr>-->
+                      <!--<th>省</th>-->
+                      <!--<th>市</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                      <!--<td>四川省</td>-->
+                      <!--<td>成都市</td>-->
+                    <!--</tr>-->
+                  <!--</table>-->
+                <!--</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ibox-title" style="border-top: none;">-->
+              <!--<h5>账户信息</h5>-->
+            <!--</div>-->
+            <!--<div class="ibox-content">-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">卡号：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">6217 0038 8442 8965 263</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">开户银行：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">-->
+                  <!--中国银行-->
+                <!--</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">支行名称：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">中国银行成都分行神仙树第八支行储蓄所</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">持卡人：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">张无忌</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ibox-title" style="border-top: none;">-->
+              <!--<h5>其他信息</h5>-->
+            <!--</div>-->
+            <!--<div class="ibox-content">-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">公司地址：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">四川省成都高新区天府大道1700号3-2-805.</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">手机号码：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">-->
+                  <!--18712345678-->
+                <!--</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">邮政编码：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">610031</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">传真号码：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">028-54634654</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">电子邮箱：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">028-54634654</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">客服QQ：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">028-54634654</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-2 col-sm-12 control-label">公司座机：</label>-->
+                <!--<div class="col-lg-10 col-sm-12">028-54634654</div>-->
+                <!--<div class="clearfix"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+        <!--<form>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-lg-2 col-sm-12 control-label">公司地址：</label>-->
+            <!--<div class="col-lg-10 col-sm-12">-->
+              <!--<div class="input-group">-->
+                  <!--<region-picker :province="region.province" :city="region.city" :district="region.district"  :placeholder="{province: '选择省份', city: '选择市', district: '选择地区'}" @onchange="change" >-->
+                  <!--</region-picker>-->
+                <!--<input type="text" class="form-control">-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-lg-2 col-sm-12 control-label">手机号码：</label>-->
+            <!--<div class="col-lg-10 col-sm-12">-->
+              <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" >-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-lg-2 col-sm-12 control-label">传真号码：</label>-->
+            <!--<div class="col-lg-10 col-sm-12">-->
+              <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" >-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-lg-2 col-sm-12 control-label">电子邮箱：</label>-->
+            <!--<div class="col-lg-10 col-sm-12">-->
+              <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" >-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-lg-2 col-sm-12 control-label">客服QQ：</label>-->
+            <!--<div class="col-lg-10 col-sm-12">-->
+              <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" >-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-lg-2 col-sm-12 control-label">公司座机：</label>-->
+            <!--<div class="col-lg-10 col-sm-12">-->
+              <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" >-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<button class="btn btn-primary">清除条件</button>-->
+            <!--<button class="btn btn-success">保存</button>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="wrapper wrapper-content">
+          <div class="ibox">
+            <div class="ibox-title">
+              <div class="row">
+                <div class="form-group col-lg-3 col-sm-6">
+                  <div class="input-group">
+                    <div class="input-group-addon">门店状态：</div>
+                    <select class="form-control" id="status">
+                      <option>全部</option>
+                      <option>解约</option>
+                      <option>正常</option>
+                      <option>冻结</option>
+                      <option>驳回</option>
+                      <option>审核中</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-lg-3 col-sm-6">
+                  <div class="input-group">
+                    <div class="input-group-addon">门店：</div>
+                    <input class="form-control" placeholder="请输入门店名称/合同编号" id="storeName">
+                  </div>
+                </div>
+                <div class="form-group col-lg-6 col-sm-6">
+                  <div class="input-group">
+                    <div class="input-group-addon">所属区域：</div>
+                    <div class="form-control" style="padding: 0;border: none;">
+                      <region-picker :province="region.province" :city="region.city" :district="region.district"  :placeholder="{province: '选择省份', city: '选择市', district: '选择地区'}" @onchange="change" >
+                      </region-picker>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-lg-6 col-sm-12 col-sm-offset-2">
+                  <div class="input-group">
+                    <div class="input-group-addon">加盟日期：</div>
+                    <div style="width: 60%;float: left;height: 32px;">
+                      <input type="text" class="Wdate form-control" style="float: left;height: 32px;width:40%" placeholder="选择开始时间" readonly="readonly" name="dateStart" id="dateStart" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'dateEnd\')}'})">
+                      <span style="float: left;width: 4%;margin: 0 1%;text-align: center;line-height: 32px;">--</span>
+                      <input type="text" class="Wdate form-control" style="float: left;height: 32px;width:40%" placeholder="选择结束时间" readonly="readonly" name="dateEnd" id="dateEnd" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'dateStart\')}'})">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group col-lg-6 col-sm-6">
+                  <button class="btn btn-red" id="clearCondition" v-on:click="clearCondition">清除条件</button>
+                  <button class="btn btn-info">查询</button>
+                  <button class="btn btn-orange" style="margin-left: 40px">新增门店</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="ibox-content" v-on:click="openImageProxy($event)">
+            <div class="container-fluid">
+              <table id="DataTable" class="table  table-bordered" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                  <th>门店编号</th>
+                  <th>门店类型</th>
+                  <th>门店名称</th>
+                  <th>所属区域</th>
+                  <th>合同编号</th>
+                  <th>加盟日期</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="footer">
+      <div class="pull-right">
+        10GB of <strong>250GB</strong> Free.
+      </div>
+      <div>
+        <strong>底部</strong> Example Company &copy; 2014-2015
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
